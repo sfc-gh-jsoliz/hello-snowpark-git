@@ -12,4 +12,4 @@ INSERT INTO git.test_data.customers
         FAKE('en_US','state_abbr',null)::varchar AS STATE
     FROM TABLE(GENERATOR(ROWCOUNT => 1000));
 
-SELECT count(*) from git.test_data.customers;
+SELECT count(*) as num_customers from git.test_data.customers;
