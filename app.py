@@ -27,11 +27,12 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.mode == 'local':
-        from snowflake.snowpark.mock.connection import MockServerConnection
-        import init_local
+        # from snowflake.snowpark.mock.connection import MockServerConnection
+        # session = Session(MockServerConnection())                      # LEGACY WAY PrPr way to Build Mock Session
 
-        session = Session(MockServerConnection())  # type: ignore
-        session = init_local.init(session)
+        import init_local
+        session = Session.builder.config('local_testing', True).create() # Better PuPr way to build mock sedssion 
+        session = init_local.init(session)  # generate a fake products table
         print(hello_local(session).show())
     
     if args.mode == 'remote':
