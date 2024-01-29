@@ -16,7 +16,7 @@ def hello_local(session: Session) -> DataFrame:
 
 def hello_remote(session: Session) -> DataFrame:
     df = session.table("git.test_data.customers")
-    df = df.groupBy("STATE").count()
+    # df = df.groupBy("STATE").count()
     return df
 
 
