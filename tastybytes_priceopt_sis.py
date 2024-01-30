@@ -71,7 +71,7 @@ df_demand = set_prices.join(
     "average_basket_profit",
     "current_price_profit",
     #  CALL udf to get new demand based on new price set in the in-memory set_prices table
-    (F.call_udf("udf_demand_price", [F.col(c) for c in feature_cols])).alias("new_price_demand"),
+    (F.call_udf("frostbyte_tasty_bytes_v2.analytics.udf_demand_price", [F.col(c) for c in feature_cols])).alias("new_price_demand"),
 )
 
 # Demand lift
