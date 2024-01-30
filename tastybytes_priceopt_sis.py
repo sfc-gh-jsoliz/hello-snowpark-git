@@ -16,7 +16,7 @@ st.write(
 session = get_active_session()
 
 # Get data and add a comment for columns
-df = session.table("pricing").with_column("comment", F.lit(""))  # recommended prices pre-calculated in 01
+df = session.table("frostbyte_tasty_bytes_v2.analytics.pricing").with_column("comment", F.lit(""))  # recommended prices pre-calculated in 01
 
 # Dynamic filters
 brand = st.selectbox("Brand:", df.select("brand").distinct())
