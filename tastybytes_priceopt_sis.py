@@ -62,7 +62,7 @@ feature_cols = [
 
 # Call the inference udf to get demand
 df_demand = set_prices.join(
-    session.table("pricing_detail"), ["brand", "item", "day_of_week"]    # wider table to append facts
+    session.table("frostbyte_tasty_bytes_v2.analytics.pricing_detail"), ["brand", "item", "day_of_week"]    # wider table to append facts
 ).select(
     "day_of_week",
     "current_price_demand",
@@ -122,8 +122,8 @@ st.line_chart(
 if st.button("Update Prices"):
     set_prices.with_column("timestamp", F.current_timestamp()).write.mode(
         "append"
-    ).save_as_table("pricing_final")
+    ).save_as_table("frostbyte_tasty_bytes_v2.analytics.pricing_final")
 
 # Expander to view submitted pricing
 with st.expander("View Current Prices in 'pricing_final' table"):
-    st.table(session.table("pricing_final").order_by(F.col("timestamp").desc()))
+    st.table(session.table("frostbyte_tasty_bytes_v2.analytics.pricing_final").order_by(F.col("timestamp").desc()))
